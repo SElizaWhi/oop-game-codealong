@@ -1,3 +1,19 @@
 body{
-    background-color: pink;
+    /*background-color: rgb(254, 176, 189);*/
+    margin: 0;
+    padding: 0;
+}
+
+#board {
+    background-color: lightskyblue;
+    height: 100vh;
+}
+
+#player {
+    background-color: rgb(205, 147, 255);
+    height: 10vh;
+    width: 20vw;
+    position: absolute;
+    bottom: 0;
+    left: 
 }
