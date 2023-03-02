@@ -7,13 +7,16 @@ body{
 #board {
     background-color: lightskyblue;
     height: 100vh;
+    position : relative;
 }
 
 #player {
     background-color: rgb(205, 147, 255);
-    height: 10vh;
-    width: 20vw;
     position: absolute;
     bottom: 0;
-    left: 
+}
+
+.obstacle {
+    background-color: palevioletred;
+    position: absolute;
 }
