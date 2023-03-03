@@ -11,13 +11,14 @@ class Game {
     setInterval(() => {
       const myObstacle = new Obstacle();
       this.obstaclesArr.push(myObstacle);
-    }, 2000);
+    }, 1000);
 
     //move obstacles + detect collision
     setInterval(() => {
       this.obstaclesArr.forEach((obstacleInstance) => {
         obstacleInstance.moveDown();
-        this.detectCollision(obstacleInstance);
+        this.detectCollision(obstacleInstance); //detect collision
+        this.removeObstacleIfOutside(obstacleInstance); //check if need to remove obstacle
       });
     }, 16);
   }
@@ -30,16 +31,23 @@ class Game {
       }
     });
   }
-  detectCollision(obstacleInstance){
-    
+  detectCollision(obstacleInstance) {
     if (
-        this.player.positionX < obstacleInstance.positionX + obstacleInstance.width &&
-        this.player.positionX + this.player.width > obstacleInstance.positionX &&
-        this.player.positionY < obstacleInstance.positionY + obstacleInstance.height &&
-        this.player.height + this.player.positionY> obstacleInstance.positionY
-      ) { 
-        console.log("Game Over");
-      }
+      this.player.positionX <
+        obstacleInstance.positionX + obstacleInstance.width &&
+      this.player.positionX + this.player.width > obstacleInstance.positionX &&
+      this.player.positionY <
+        obstacleInstance.positionY + obstacleInstance.height &&
+      this.player.height + this.player.positionY > obstacleInstance.positionY
+    ) {
+      console.log("Game Over");
+    }
+  }
+  removeObstacleIfOutside(obstacleInstance){
+    if (obstacleInstance.positionY < 0){
+        obstacleInstance.obstacleElm.remove(); //remove from the dom
+        this.obstaclesArr.shift(); //remove from the array
+    }
   }
 }
 
@@ -67,7 +75,7 @@ class Player {
 
 class Obstacle {
   constructor() {
-    this.positionX = 50;
+    this.positionX = 40;
     this.positionY = 100;
     this.width = 20;
     this.height = 10;
